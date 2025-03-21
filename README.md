@@ -1,6 +1,4 @@
 # KLSAS
-## 🧠 Technical Workflow
-
 This project presents an innovative pipeline combining **Odds Ratio Preference Optimization (ORPO)**, **Unsloth**, and the **KNIME Analytics Platform** to efficiently fine-tune large language models (LLMs) for multi-class sentiment analysis with minimal resource consumption. The workflow is structured as follows:
 
 ### 1. 🔍 Data Preparation
@@ -19,7 +17,15 @@ This project presents an innovative pipeline combining **Odds Ratio Preference O
 - Conducted experiments on real-world data, achieving **88% recall for neutral sentiment** classification.
 - Outperformed baseline methods including BERT and traditional machine learning models (e.g., TF-IDF + Logistic Regression) in both accuracy and resource efficiency.
 
+### ✨ Highlights
+- Unified the LLM fine-tuning pipeline by merging **instruction-tuning** and **preference alignment** using ORPO.
+- Delivered a practical, enterprise-ready sentiment analysis system with scalable deployment on the **KNIME** platform.
+- Reduced computational overhead while enhancing accuracy for nuanced, multi-class sentiment tasks.
+
 ---
+
+
+
 
 ## KLSAS - Workflow Overview
 
@@ -57,12 +63,4 @@ The system is structured into three key phases to streamline LLM fine-tuning and
 - **Outputs:** Model-generated sentiment labels (positive, neutral, negative) and comprehensive performance metrics.
 
 ---
-
 🎯 **Objective:** Deliver an enterprise-ready, low-code sentiment analysis solution by combining ORPO fine-tuning with KNIME visual workflows.
-
-
-### ✨ Highlights
-- Unified the LLM fine-tuning pipeline by merging **instruction-tuning** and **preference alignment** using ORPO.
-- Delivered a practical, enterprise-ready sentiment analysis system with scalable deployment on the **KNIME** platform.
-- Reduced computational overhead while enhancing accuracy for nuanced, multi-class sentiment tasks.
-
