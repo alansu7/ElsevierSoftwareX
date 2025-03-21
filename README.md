@@ -21,6 +21,46 @@ This project presents an innovative pipeline combining **Odds Ratio Preference O
 
 ---
 
+## KLSAS - Workflow Overview
+
+![Project Workflow](img/Workflow%20for%20Prompt-Based%20Sentiment%20Classification%20with%20LLMs.png)
+
+---
+
+## 🔄 Simplified Project Workflow
+
+The system is structured into three key phases to streamline LLM fine-tuning and deployment for multi-class sentiment analysis:
+
+### **Phase 1: Data Preprocessing (KNIME)**
+- **Input:** Raw Twitter dataset (`Twitter.csv`)
+- **Process:** Utilizing KNIME, data is split into training and testing sets.
+- Data points are converted into a prompt-based format:
+  - `Instruction`: Defines the classification task
+  - `Input`: Raw tweet text
+  - `Accepted`: Correct sentiment label
+  - `Rejected`: Incorrect sentiment labels
+- **Output:** A structured dataset (`ORPO-ready.csv`) ready for model fine-tuning.
+
+---
+
+### **Phase 2: Model Fine-tuning (Colab + Unsloth + ORPO)**
+- **Environment:** Google Colab with the Unsloth optimization framework.
+- **Base Model:** Mistral-Nemo-Instruct-2407.
+- **Technique:** Fine-tuning via ORPO to unify supervised fine-tuning and alignment into one stage.
+- **Result:** An optimized fine-tuned model (**FT-LLM**) for multi-class sentiment classification.
+
+---
+
+### **Phase 3: KLSAS Deployment (KNIME)**
+- **Deployment:** Integration of FT-LLM into **KNIME Analytics Platform** via a no-code workflow.
+- **Application:** Real-time sentiment analysis on customer feedback and online reviews.
+- **Outputs:** Model-generated sentiment labels (positive, neutral, negative) and comprehensive performance metrics.
+
+---
+
+🎯 **Objective:** Deliver an enterprise-ready, low-code sentiment analysis solution by combining ORPO fine-tuning with KNIME visual workflows.
+
+
 ### ✨ Highlights
 - Unified the LLM fine-tuning pipeline by merging **instruction-tuning** and **preference alignment** using ORPO.
 - Delivered a practical, enterprise-ready sentiment analysis system with scalable deployment on the **KNIME** platform.
