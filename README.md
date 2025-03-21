@@ -62,9 +62,14 @@ The system is structured into three key phases to streamline LLM fine-tuning and
 ---
 
 ### **Phase 3: KLSAS Deployment (KNIME)**
+
 - **Deployment:** Integration of FT-LLM into **KNIME Analytics Platform** via a no-code workflow.
 - **Application:** Real-time sentiment analysis on customer feedback and online reviews.
 - **Outputs:** Model-generated sentiment labels (positive, neutral, negative) and comprehensive performance metrics.
+&nbsp;
+
+🔗 **For the detailed workflow, see** [Phase 3: KLSAS Deployment (KNIME)](./KLSAS_Deployment/README.md)
 
 ---
+
 🎯 **Objective:** Deliver an enterprise-ready, low-code sentiment analysis solution by combining ORPO fine-tuning with KNIME visual workflows.
