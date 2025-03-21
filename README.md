@@ -1,1 +1,28 @@
-# ElsevierSoftwareX
+# KLSAS
+## 🧠 Technical Workflow
+
+This project presents an innovative pipeline combining **Odds Ratio Preference Optimization (ORPO)**, **Unsloth**, and the **KNIME Analytics Platform** to efficiently fine-tune large language models (LLMs) for multi-class sentiment analysis with minimal resource consumption. The workflow is structured as follows:
+
+### 1. 🔍 Data Preparation
+- Leveraged the public "Tweets.csv" dataset (Kaggle) by extracting key fields: `text` (tweets) and `airline_sentiment` (positive, negative, neutral labels).
+- Converted data into ORPO-compatible format with `instruction`, `input`, `accepted`, and `rejected` fields to enable preference-based learning and improve multi-class discrimination capability.
+
+### 2. ⚙️ Model Fine-tuning (ORPO + Unsloth)
+- Adopted **Mistral-Nemo-Instruct-2407** as the base model, fine-tuned using the **Unsloth** framework with ORPO methodology.
+- Applied optimization techniques including **LoRA (Low-Rank Adaptation)**, **4-bit quantization**, and **gradient checkpointing** to enhance memory efficiency and reduce training time while preserving model performance.
+
+### 3. 🚀 KLSAS System Deployment (KNIME)
+- Integrated the ORPO fine-tuned model into a no-code environment using the **KNIME Analytics Platform** to build the **Knime LLM-based Sentiment Analysis System (KLSAS)**.
+- Developed a modular visual workflow for tasks such as data ingestion, model inference, and performance evaluation, ensuring accessibility for non-technical users.
+
+### 4. 📊 Experimental Validation
+- Conducted experiments on real-world data, achieving **88% recall for neutral sentiment** classification.
+- Outperformed baseline methods including BERT and traditional machine learning models (e.g., TF-IDF + Logistic Regression) in both accuracy and resource efficiency.
+
+---
+
+### ✨ Highlights
+- Unified the LLM fine-tuning pipeline by merging **instruction-tuning** and **preference alignment** using ORPO.
+- Delivered a practical, enterprise-ready sentiment analysis system with scalable deployment on the **KNIME** platform.
+- Reduced computational overhead while enhancing accuracy for nuanced, multi-class sentiment tasks.
+
