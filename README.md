@@ -57,7 +57,7 @@ The system is structured into three key phases to streamline LLM fine-tuning and
 - **Result:** An optimized fine-tuned model (**FT-LLM**) for multi-class sentiment classification.
 &nbsp;
 
-🔗 **For the detailed workflow, see** [Phase 2: Model Fine-tuning (Colab + Unsloth + ORPO)](./Model%20Fine-tuning%20(Colab%20+%20Unsloth%20+%20ORPO)/README.md)
+🔗 **For the detailed workflow, see** [Phase 2: Model Fine-tuning (Colab + Unsloth + ORPO)](./Model_Fine-tuning/README.md)
 
 ---
 
