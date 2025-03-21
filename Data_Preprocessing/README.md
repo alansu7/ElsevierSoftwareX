@@ -2,7 +2,7 @@
 
 ---
 
-### **Step 1: CSV Reader Input Data **
+### **Step 1: CSV Reader Input Data**
 - **Input:** `Tweets.csv` from Kaggle Airline Sentiment Dataset.
 - **Function:** Reads the dataset and extracts two columns:  
   `text` (tweet content) and `airline_sentiment` (label: positive, neutral, negative).
