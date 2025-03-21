@@ -1,6 +1,6 @@
 ## 🧪 Model Fine-tuning (Colab + Unsloth + ORPO)
 
-![ORPO Fine-tuning Workflow](img/ORPO%20Fine-Tuning%20Workflow.png)
+![ORPO Fine-tuning Workflow](../img/ORPO%20Fine-Tuning%20Workflow.png)
 
 ---
 
