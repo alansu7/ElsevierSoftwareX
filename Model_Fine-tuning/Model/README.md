@@ -1,9 +1,10 @@
-## 🧩 Trained Model Directory
+## 🧩 Trained Model Location
 
-This folder contains the fine-tuned model generated from the ORPO fine-tuning process.
+Due to GitHub's file size limitation (max 100MB per file), the fine-tuned model cannot be stored directly in this repository.
 
-You can download the model directly from this directory for local deployment or integration into external systems such as GPT4ALL or KNIME.
+You can download the model from Hugging Face:
 
-> 📥 **Note**: Ensure that the model file is compatible with your deployment environment (e.g., GGUF format for llama.cpp or GPT4ALL).
+🔗 [Download Mistral-Nemo-IT-2407-ORPOall-f16 (GGUF format) on Hugging Face](https://huggingface.co/iecjsu/Mistral-Nemo-IT-2407-ORPOall-f16/tree/main)
 
+> 💡 **Note**: This model is optimized and saved in `f16` GGUF format, ready for deployment in GPT4ALL or llama.cpp environments.
 
