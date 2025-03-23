@@ -1,6 +1,6 @@
 ## 🧩 Trained Model Location
 
-Due to GitHub's file size limitation (max 100MB per file), the fine-tuned model cannot be stored directly in this repository.
+Due to GitHub's file size limitation, the fine-tuned model cannot be stored directly in this repository.
 
 You can download the model from Hugging Face:
 
