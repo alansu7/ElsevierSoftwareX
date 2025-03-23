@@ -4,80 +4,62 @@
 
 ---
 
-### **1. Environment Setup (Unsloth Framework)**
+### 1. Environment Setup (Unsloth)
 
-- **Install Unsloth nightly**:
-  - Ensure the latest development version is installed with pip.
-  - Avoid verbose notebook outputs using subprocess (e.g., `capture_output=True`).
-- **Import FastLanguageModel**:
-  - Load pre-trained models with 4-bit quantization for optimized memory usage.
-  - RoPE scaling and dtype customization (Float16 / BFloat16) based on GPU type.
-- **Integrate LoRA (Low-Rank Adaptation)**:
-  - Enable parameter-efficient fine-tuning (PEFT).
-  - Only 1-10% of model parameters are updated, drastically reducing memory footprint.
-  - Optional: Gradient checkpointing, LoftQ, and RSLora for additional optimization.
+- Install Unsloth nightly build, uninstall previous versions, and suppress verbose outputs in the notebook.
+- Import `FastLanguageModel` from Unsloth.
+- Load the base model in **4-bit quantization** with RoPE scaling enabled and dtype set (float16 for T4/V100 or bfloat16 for A100).
+- Apply **LoRA** adapters for parameter-efficient fine-tuning (PEFT), using ~1-10% trainable parameters.
+- Optional memory optimizations include gradient checkpointing, LoftQ, and RSLora.
 
 ---
 
-### **2. Data Preparation**
+### 2. Data Preparation (ORPO Dataset)
 
-- Prepare ORPO-style datasets with the following columns:
-  - `Instruction`: e.g., `"What is 2+2?"`
-  - `Accepted`: `"The answer is 4"`
-  - `Rejected`: `"The answer is 5"`
-- Format data using an Alpaca-style prompt template (`prompt`, `chosen`, `rejected`).
-- Load and preprocess datasets from Hugging Face (`iecjsu/airlineORPO_all`).
-- **Print and validate samples**:
-  - Visualize prompt structure and check Accepted/Rejected responses using `pprint`.
-
----
-
-### **3. Training the Model**
-
-- **Trainer configuration**:
-  - Create an **ORPOTrainer** instance from Hugging Face TRL.
-  - Adjust hyperparameters (e.g., `batch_size`, `max_length`, `beta`, `fp16/bf16`, etc.).
-- **Training process**:
-  - Invoke `orpo_trainer.train()` to fine-tune the model.
-  - Automatically logs loss, gradients, and learning rates.
-  - Save checkpoints to `output_dir` after completion.
+- Prepare an ORPO-style dataset containing:
+  - `Instruction`: The task instruction.
+  - `Accepted`: The preferred response.
+  - `Rejected`: The non-preferred response.
+  
+- Format into Alpaca-style schema (`prompt`, `chosen`, `rejected`).
+- Load dataset from Hugging Face: `iecjsu/airlineORPO_all`.
+- Inspect sample data using `pprint()` to validate the formatting.
+- Import **PatchDPOTrainer** to enhance reward modeling statistics in the training pipeline.
 
 ---
 
-### **4. Inference**
+### 3. Model Fine-tuning (ORPOTrainer)
 
-- **Fast Inference with FastLanguageModel**:
-  - Format inputs using Alpaca templates.
-  - Utilize `FastLanguageModel.for_inference()` for efficient generation.
-  - Decode outputs with `tokenizer.decode()` or stream tokens using **TextStreamer**.
+- Configure **ORPOTrainer** with the following settings:
+  - `beta`: Preference ranking strength (e.g., 0.1).
+  - `max_length`, `max_prompt_length`, `max_completion_length`: Control input-output token lengths.
+  - `batch_size`: Set for T4 compatibility.
+  - `fp16` / `bf16`: Enable mixed precision.
+  - `optim`: Use `adamw_8bit` optimizer for memory efficiency.
+  - `max_steps`: 60 steps for testing (or `num_train_epochs=1` for full training).
+  - Logging enabled at custom intervals.
 
----
-
-### **5. Saving & Exporting the Model**
-
-- **Option 1: Save LoRA adapter only**:
-  - `model.save_pretrained("lora_model")`
-  - Push adapter to Hugging Face with `push_to_hub()`.
-
-- **Option 2: Merge & save full model**:
-  - Save merged model in **float16** (`merged_16bit`) or **int4** (`merged_4bit`) formats.
-
-- **Option 3: Export to GGUF / llama.cpp formats**:
-  - Support for `q8_0`, `q4_k_m`, and `f16` quantization methods.
-  - Save locally with `save_pretrained_gguf()` or push to Hugging Face via `push_to_hub_gguf()`.
+- Start the fine-tuning process with `orpo_trainer.train()`.
 
 ---
 
-### **6. Deploying the Model**
+### 4. Inference (FastLanguageModel)
 
-- **Local deployment**:
-  - Integrate `.gguf` models into **GPT4All** or **llama.cpp** CLI workflows.
-- **GPT4All**:
-  - GUI-based interface for easy interaction.
-- **llama.cpp**:
-  - Command-line tool supporting custom parameters and batch processing.
+- Switch model to inference mode with `FastLanguageModel.for_inference()`.
+- Format prompts in Alpaca style and generate outputs via `model.generate()`.
+- Optionally use **TextStreamer** to stream tokens in real-time to the console.
 
+---
 
+### 5. Saving & Exporting the Model
 
+- Save the LoRA adapter locally (`save_pretrained()`) or push to Hugging Face (`push_to_hub()`).
+- Merge and export the model in:
+  - **float16** (`merged_16bit`)
+  - **int4** (`merged_4bit`)
+  - **LoRA-only** weights.
+  
+- Export to **GGUF** format for llama.cpp or GPT4All deployment:
+  - Supported quantization methods: `q8_0`, `q4_k_m`, `q5_k_m`, `f16`.
 
-
+---
