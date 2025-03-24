@@ -5,7 +5,18 @@ The final phase deploys the fine-tuned model into **KLSAS**, a no-code sentiment
 ---
 
 ### **1️⃣ Prompt Preparation (KNIME)**
+### 🎯 Purpose:
+Pipeline for generating structured prompts from raw text reviews.
 
+### ⚙️ What It Does:
+- Ingests **150 airline reviews** from a CSV.
+- Performs **stratified sampling** by sentiment labels to ensure balanced representation.
+- Appends a **instruction**:
+  > `Classify the following text using one of these labels: neutral, positive, and negative:`
+- Handles **missing values** in instructions column.
+- Concatenates the instruction with each text input to create a **standardized prompt**.
+
+✅ Enables consistent prompt formatting for multi-class sentiment classification (`neutral`, `positive`, `negative`).
 | **Node**               | **Configuration**                                                                              |
 |------------------------|------------------------------------------------------------------------------------------------|
 | **CSV Reader**         | Source: Local Mountpoint<br>Path: `your_computer/filename.csv`                                |
@@ -18,7 +29,15 @@ The final phase deploys the fine-tuned model into **KLSAS**, a no-code sentiment
 ---
 
 ### **2️⃣ Model Selection (KNIME + GPT4ALL)**
+### 🎯 Purpose:
+Establishes a secure connection to the **GPT4ALL local API** and loads the ORPO-tuned model.
 
+### ⚙️ What It Does:
+- Configures secure **user credentials**.
+- Authenticates with **GPT4ALL API** (`http://localhost:4891/v1`).
+- Selects the appropriate **LLM model** (e.g., `Mistral-Nemo-IT-2407-ORPOall-f16`).
+  
+✅ Ensures model availability for real-time inference inside KNIME workflows.
 | **Node**                        | **Configuration**                                                                                     |
 |----------------------------------|-----------------------------------------------------------------------------------------------------|
 | **Credentials Configuration**    | Define `username` & `password` <br> Save password (weak encryption)                                |
@@ -28,7 +47,14 @@ The final phase deploys the fine-tuned model into **KLSAS**, a no-code sentiment
 ---
 
 ### **3️⃣ Model Inference**
+### 🎯 Purpose:
+Uses the fine-tuned model to classify sentiment based on input prompts.
 
+### ⚙️ What It Does:
+- Sends each **prompt** to the LLM via the **LLM Prompter Node**.
+- Retrieves and stores model **predictions** in the response column.
+
+✅ Provides fully automated **sentiment classification outputs** directly inside KNIME.
 | **Node**            | **Configuration**                             |
 |---------------------|-----------------------------------------------|
 | **LLM Prompter**    | Input column: `prompt`<br> Output: `Response` |
@@ -36,6 +62,17 @@ The final phase deploys the fine-tuned model into **KLSAS**, a no-code sentiment
 ---
 
 ### **4️⃣ Performance Evaluation**
+### 🎯 Purpose:
+Evaluates model predictions and generates key performance metrics.
+
+### ⚙️ What It Does:
+- Normalizes and cleans raw model outputs.
+- Maps responses to target sentiment classes (with fallback to `"unclassified"`).
+- Computes **confusion matrix** and derives **recall/accuracy** per label.
+- Compares predictions to ground truth (`label vs response`).
+- Visualizes results with KNIME’s native reporting tools.
+
+✅ Ensures **interpretability** with detailed error analysis and robust accuracy assessment.
 
 | **Node**              | **Configuration**                                                                 |
 |-----------------------|-----------------------------------------------------------------------------------|
