@@ -1,57 +1,60 @@
-## 🗂️ Phase 1: Data Preparation (ORPO Dataset Generation with KNIME)
+## 📊 Phase 1: Data Preprocessing (KNIME)
+![img/ORPO dataset creation.png](../img/ORPO_dataset_creation.png)
+
+
+## 1️⃣ Extract & Pair Neutral Sentiments 
+![Integrating incorrect labels in neutral sentiment preparation](../img/Integrating%20incorrect%20labels%20in%20neutral%20sentiment%20preparation.png)
+
+### 🎯 Purpose:
+To isolate **neutral sentiment samples** and create "rejected" sentiment pairs to comply with ORPO's preference data structure.
+
+### 🧩 What It Does:
+- Filters the dataset to select all rows where `airline_sentiment = neutral`.
+- **Branch A:** Appends `"positive"` as a `rejected` label.
+- **Branch B:** Appends `"negative"` as a `rejected` label.
+- Both branches are merged using a **Concatenate Node**, resulting in each **neutral sample** being paired with **two rejected alternatives**.
+
+### ✅ Output:
+A dataset where **neutral samples** are combined with rejected labels (`positive`, `negative`) in preparation for preference-based fine-tuning.
 
 ---
 
-### **Step 1: CSV Reader Input Data**
-- **Input:** `Tweets.csv` from Kaggle Airline Sentiment Dataset.
-- **Function:** Reads the dataset and extracts two columns:  
-  `text` (tweet content) and `airline_sentiment` (label: positive, neutral, negative).
+## 2️⃣ Instruction & Input Construction 
+![Integrating instructions and input texts in dataset preparation](../img/Integrating%20instructions%20and%20input%20texts%20in%20dataset%20preparation.png)
 
----
+### 🎯 Purpose:
+To integrate system instructions and construct final input fields for ORPO fine-tuning format.
 
-### **Step 2: Neutral Sentiment Split (Fig.7)**
-
-- **Row Filter (KNIME Node):** Extracts rows where `airline_sentiment = neutral`.
-- **Column Appender (Branch A):** Adds `"positive"` as `rejected`.
-- **Column Appender (Branch B):** Adds `"negative"` as `rejected`.
-- **Concatenate Node:** Merges both neutral branches.
-- **Missing Value Node:** Fills empty values if needed.
-
-➡️ **Output:** Neutral samples paired with both `"positive"` and `"negative"` rejected labels.
-
----
-
-### **Step 3: Instruction Injection & Input Construction (Fig.8)**
-
-- **Table Creator:** Creates system instruction:  
+### 🧩 What It Does:
+- Creates a reusable system prompt:  
   `"Classify the input using one of these labels: neutral, positive, and negative."`
+- Appends this `instruction` to each sample and combines it with the `text` field (tweet content), forming the final `input`.
+- Standardizes the output columns to match the ORPO data format:  
+  `instruction`, `input`, `accepted`, and `rejected`.
 
-- **Column Appender:** Appends `instruction` and `text` (as `input`) fields to dataset.
-
-➡️ **Output:** Dataset containing `instruction`, `input`, `accepted`, and `rejected`.
-
----
-
-### **Step 4: Column Renamer, Resorter & Shuffle**
-
-- **Column Renamer:** Standardize column names.
-- **Column Resorter:** Ensure order as:  
-  `instruction`, `input`, `accepted`, `rejected`
-- **Shuffle Node:** Randomize rows.
+### ✅ Output:
+An enriched dataset where every row now contains the **instruction + input pair**, along with the `accepted` and `rejected` labels.
 
 ---
 
-### **Step 5: JSON Conversion & Export (Fig.9)**
+## 3️⃣ Dataset Consolidation & JSON Export 
+![Merging sentiment classes and converting to json format](../img/Merging%20sentiment%20classes%20and%20converting%20to%20json%20format.png)
 
-- **Concatenate Node:** Merge datasets for neutral, positive, and negative sentiments.
-- **Table to JSON:** Convert to JSON format.
-- **JSON Writer:** Export as `orpo_train.json`.
+### 🎯 Purpose:
+To finalize the dataset structure and export the ORPO-compatible preference dataset.
 
-➡️ **Final Output:** ORPO-ready dataset for model fine-tuning.
+### 🧩 What It Does:
+- Merges datasets from **neutral**, **positive**, and **negative** sentiment pipelines into a **single table**.
+- Shuffles the dataset to avoid sequential bias during training.
+- Converts the final table into **JSON format** using the `Table to JSON` node.
+- Exports the data as `orpo_train.json` for downstream use (e.g., uploading to Hugging Face or feeding into the ORPO training pipeline).
+
+### ✅ Output:
+A ready-to-use **ORPO preference dataset** in JSON format, structured for immediate use in LLM fine-tuning workflows.
 
 ---
 
-### 🎯 **JSON Output Example**
+### 🎯 **Sample JSON Output**
 
 ```json
 {
