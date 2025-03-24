@@ -5,6 +5,7 @@ The final phase deploys the fine-tuned model into **KLSAS**, a no-code sentiment
 ---
 
 ### **1️⃣ Prompt Preparation (KNIME)**
+![Prompt Preparation](../img/Prompt%20Preparation.png)
 ### 🎯 Purpose:
 Pipeline for generating structured prompts from raw text reviews.
 
@@ -29,6 +30,7 @@ Pipeline for generating structured prompts from raw text reviews.
 ---
 
 ### **2️⃣ Model Selection (KNIME + GPT4ALL)**
+![Model Selection](../img/Model%20Selection.png)
 ### 🎯 Purpose:
 Establishes a secure connection to the **GPT4ALL local API** and loads the ORPO-tuned model.
 
@@ -47,6 +49,7 @@ Establishes a secure connection to the **GPT4ALL local API** and loads the ORPO-
 ---
 
 ### **3️⃣ Model Inference**
+![Model Inference](../img/Model%20Inference.png)
 ### 🎯 Purpose:
 Uses the fine-tuned model to classify sentiment based on input prompts.
 
@@ -62,6 +65,7 @@ Uses the fine-tuned model to classify sentiment based on input prompts.
 ---
 
 ### **4️⃣ Performance Evaluation**
+![Model Performance Evaluation.png](../img/Model%20Performance%20Evaluation.png)
 ### 🎯 Purpose:
 Evaluates model predictions and generates key performance metrics.
 
