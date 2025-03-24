@@ -1,4 +1,4 @@
-## Phase 2: Model Fine-tuning (Colab + Unsloth + ORPO)
+## ⚙️Phase 2: Model Fine-tuning (Colab + Unsloth + ORPO)
 
 ![ORPO Fine-tuning Workflow](../img/ORPO%20Fine-Tuning%20Workflow.png)
 
