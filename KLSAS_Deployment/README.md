@@ -45,7 +45,7 @@ Directly connects to a locally deployed GPT4ALL model (`.gguf`) without requirin
 | **Node**                     | **Configuration**                                                                                  |
 |-----------------------------|----------------------------------------------------------------------------------------------------|
 | Local GPT4All LLM Connector | **Model path**: `E:\LLMmodel\models\qwen2-7b-instruct-q4_0.gguf`<br>**Maximum response length (token)**: `250`<br>**Context length**: `2048`<br>**Temperature**: `0.2`<br>**Top-k sampling**: `20`<br>**Top-p sampling**: `0.15`<br>**Prompt batch size**: `128`<br>**Device**: `cpu` (*use `cuda` if GPU is available*) |
-**📌 Note:** Ensure your selected `.gguf` model is compatible with GPT4ALL and that the file path is valid on your machine.
+> 📌 **Note:** Ensure your selected `.gguf` model is compatible with **GPT4ALL** and that the file path is valid on your machine.
 ---
 ### **3️⃣ Model Inference**
 ![Model Inference](../img/Model%20Inference.png)
