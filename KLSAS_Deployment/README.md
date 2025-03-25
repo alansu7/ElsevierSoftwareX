@@ -29,25 +29,24 @@ Pipeline for generating structured prompts from raw text reviews.
 
 ---
 
-### **2️⃣ Model Selection (KNIME + GPT4ALL)**
-![Model Selection](../img/Model%20Selection.png)
+### **2️⃣ Model Selection (Local GPT4ALL LLM Connector)**
+
+![Local GPT4ALL LLM Connector.png](../img/Local%20GPT4ALL%20LLM%20Connector.png)
+
 ### 🎯 Purpose:
-Establishes a secure connection to the **GPT4ALL local API** and loads the ORPO-tuned model.
+Directly connects to a locally deployed GPT4ALL model (`.gguf`) without requiring credentials or API endpoints.
 
 ### ⚙️ What It Does:
-- Configures secure **user credentials**.
-- Authenticates with **GPT4ALL API** (`http://localhost:4891/v1`).
-- Selects the appropriate **LLM model** (e.g., `Mistral-Nemo-IT-2407-ORPOall-f16`).
-  
-✅ Ensures model availability for real-time inference inside KNIME workflows.
-| **Node**                        | **Configuration**                                                                                     |
-|----------------------------------|-----------------------------------------------------------------------------------------------------|
-| **Credentials Configuration**    | Define `username` & `password` <br> Save password (weak encryption)                                |
-| **OpenAI Authenticator**         | API Key: from `credentials`<br> Base URL: `http://localhost:4891/v1` (GPT4ALL local API)           |
-| **OpenAI Chat Model Connector**  | Model ID: `Mistral-Nemo-Instruct-2407.gguf` or `Mistral-Nemo-IT-2407-ORPOall-f16`<br> Max tokens: 100<br> Temperature: 0.2 |
+- Uses the **Local GPT4All LLM Connector** node to load a `.gguf` model from local disk.
+- No need for authentication or API key — the model runs entirely offline.
+- Configures key inference parameters like **max response tokens** and **temperature**.
 
+✅ Enables a fully offline, local LLM inference setup within KNIME with minimal configuration.
+| **Node**                     | **Configuration**                                                                                  |
+|-----------------------------|----------------------------------------------------------------------------------------------------|
+| Local GPT4All LLM Connector | **Model path**: `E:\LLMmodel\models\qwen2-7b-instruct-q4_0.gguf`<br>**Maximum response length (token)**: `250`<br>**Context length**: `2048`<br>**Temperature**: `0.2`<br>**Top-k sampling**: `20`<br>**Top-p sampling**: `0.15`<br>**Prompt batch size**: `128`<br>**Device**: `cpu` (*use `cuda` if GPU is available*) |
+**📌 Note:** Ensure your selected `.gguf` model is compatible with GPT4ALL and that the file path is valid on your machine.
 ---
-
 ### **3️⃣ Model Inference**
 ![Model Inference](../img/Model%20Inference.png)
 ### 🎯 Purpose:
