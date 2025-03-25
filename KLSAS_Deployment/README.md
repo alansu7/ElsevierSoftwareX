@@ -41,7 +41,7 @@ Directly connects to a locally deployed GPT4ALL model (`.gguf`) without requirin
 - No need for authentication or API key — the model runs entirely offline.
 - Configures key inference parameters like **max response tokens** and **temperature**.
 
-✅ Enables a fully offline, local LLM inference setup within KNIME with minimal configuration.
+✅ Supports fully offline LLM inference within KNIME using a locally deployed model.
 | **Node**                     | **Configuration**                                                                                  |
 |-----------------------------|----------------------------------------------------------------------------------------------------|
 | Local GPT4All LLM Connector | **Model path**: `E:\LLMmodel\models\qwen2-7b-instruct-q4_0.gguf`<br>**Maximum response length (token)**: `250`<br>**Context length**: `2048`<br>**Temperature**: `0.2`<br>**Top-k sampling**: `20`<br>**Top-p sampling**: `0.15`<br>**Prompt batch size**: `128`<br>**Device**: `cpu` (*use `cuda` if GPU is available*) |
