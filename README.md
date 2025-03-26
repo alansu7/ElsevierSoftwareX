@@ -57,6 +57,9 @@ The system is structured into three key phases to streamline LLM fine-tuning and
   - `Accepted`: Correct sentiment label
   - `Rejected`: Incorrect sentiment labels
 - **Output:** A structured dataset (`ORPO-ready.csv`) ready for model fine-tuning.
+&nbsp;
+
+🔗 **For the detailed workflow, see** [Phase 1: Data Preprocessing(KNIME)](./Data_Preprocessing)
 
 ---
 
@@ -68,7 +71,7 @@ The system is structured into three key phases to streamline LLM fine-tuning and
 - **Result:** An optimized fine-tuned model (**FT-LLM**) for multi-class sentiment classification.
 &nbsp;
 
-🔗 **For the detailed workflow, see** [Phase 2: Model Fine-tuning (Colab + Unsloth + ORPO)](./Model_Fine-tuning/README.md)
+🔗 **For the detailed workflow, see** [Phase 2: Model Fine-tuning (Colab + Unsloth + ORPO)](./Model_Fine-tuning)
 
 ---
 
@@ -79,7 +82,7 @@ The system is structured into three key phases to streamline LLM fine-tuning and
 - **Outputs:** Model-generated sentiment labels (positive, neutral, negative) and comprehensive performance metrics.
 &nbsp;
 
-🔗 **For the detailed workflow, see** [Phase 3: KLSAS Deployment (KNIME)](./KLSAS_Deployment/README.md)
+🔗 **For the detailed workflow, see** [Phase 3: KLSAS Deployment (KNIME)](./KLSAS_Deployment)
 
 ---
 
