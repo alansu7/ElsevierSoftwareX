@@ -24,7 +24,18 @@ This project presents an innovative pipeline combining **Odds Ratio Preference O
 
 ---
 
+## 📦 System Requirements & Dependencies
 
+Before running the KLSAS workflow, ensure the following tools and platforms are installed and up-to-date:
+
+| **Tool**        | **Description**                                                                 | **Download / Link**                                                                                     |
+|------------------|---------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| **KNIME**         | Visual workflow platform used to build and deploy the KLSAS system.              | 🔗 [KNIME (Latest Version)](https://www.knime.com/)                                                      |
+| **GPT4ALL**       | Offline LLM runtime for loading `.gguf` models used during KNIME integration.    | 🔗 [GPT4ALL (Latest Version)](https://gpt4all.io/index.html?ref=localhost)                              |
+| **Unsloth**       | Memory-efficient fine-tuning framework for LLMs, used in Phase 2.                | 🔗 [Unsloth GitHub](https://github.com/unslothai/unsloth?tab=readme-ov-file)                             |
+| **Hugging Face**  | LLM model hub and hosting platform for downloading pretrained/fine-tuned models.| 🔗 [Hugging Face](https://huggingface.co/)                                                               |
+
+---
 
 
 ## KLSAS - Workflow Overview
