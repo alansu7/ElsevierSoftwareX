@@ -1,3 +1,4 @@
+![KNIME workflow for the development of KLSAS](../img/KNIME%20workflow%20for%20the%20development%20of%20KLSAS.png)
 ## 🏭 Phase 3: KLSAS Deployment & Configuration (GPT4ALL + KNIME)
 
 The final phase deploys the fine-tuned model into **KLSAS**, a no-code sentiment analysis pipeline powered by **KNIME** and integrated with **GPT4ALL**. Below is a detailed configuration for each node within the KLSAS workflow, including prompt generation, model integration, and performance evaluation.
